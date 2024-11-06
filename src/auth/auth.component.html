@@ -1,0 +1,30 @@
+<div class="modal-container">
+    <div class="modal">
+        <h2>Phone Number Verification</h2>
+
+        <!-- Error Message -->
+        <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+        </div>
+
+        <!-- Phone Number Input Form -->
+        <div *ngIf="!otpSent">
+            <input type="text" [(ngModel)]="phone" placeholder="Enter your phone number" maxlength="10"
+                class="input-field" />
+            <button (click)="sendOtp()" [disabled]="!phone" class="btn">
+                Send OTP
+            </button>
+        </div>
+
+        <!-- OTP Input Form -->
+        <div *ngIf="otpSent">
+            <p>OTP sent to: {{ phone }}</p>
+            <p>Time remaining: {{ timeRemaining }} seconds</p>
+
+            <input type="text" [(ngModel)]="otp" placeholder="Enter OTP" maxlength="6" class="input-field" />
+            <button (click)="verifyOtp()" [disabled]="!otp" class="btn">
+                Verify OTP
+            </button>
+        </div>
+    </div>
+</div>
